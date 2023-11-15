@@ -20,12 +20,32 @@ public class ToyStore {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите данные игрушки:");
-        System.out.print("Имя: ");
-        String name = scanner.nextLine();
-        System.out.print("Количество: ");
-        int quantity = scanner.nextInt();
-        System.out.print("Вес %%: ");
-        double weightPercentage = scanner.nextDouble();
+        String name;
+        do {
+            System.out.print("Имя: ");
+            name = scanner.nextLine();
+        } while (name.trim().isEmpty());
+
+        int quantity;
+        do {
+            System.out.print("Количество: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Количество должно быть целым числом");
+                scanner.next();
+            }
+            quantity = scanner.nextInt();
+        } while (quantity <= 0);
+
+        double weightPercentage;
+        do {
+            System.out.print("%% вес: ");
+            while (!scanner.hasNextDouble()) {
+                System.out.println("Вес должен быть действительным числом числом");
+                scanner.next();
+            }
+            weightPercentage = scanner.nextDouble();
+        } while (weightPercentage < 0 || weightPercentage > 100);
+
 
         Toy newToy = new Toy(name, quantity, weightPercentage);
         addToy(newToy);
