@@ -3,6 +3,7 @@ package org.example;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ToyStore {
     private final List<Toy> toys;
@@ -13,6 +14,22 @@ public class ToyStore {
 
     public void addToy(Toy toy) {
         toys.add(toy);
+    }
+
+    public void addNewToy() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите данные игрушки:");
+        System.out.print("Имя: ");
+        String name = scanner.nextLine();
+        System.out.print("Количество: ");
+        int quantity = scanner.nextInt();
+        System.out.print("Вес %%: ");
+        double weightPercentage = scanner.nextDouble();
+
+        Toy newToy = new Toy(name, quantity, weightPercentage);
+        addToy(newToy);
+        System.out.println("Новая игрушка успешно добавлена!");
     }
 
     public void play() {
